@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
-import useData from "./useData";
-import { Genre } from "./useGenres";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
 import { GameQuery } from "../App";
+import APIClient, { FetchResponse } from "../services/api-client";
+import { Platform } from "./usePlatforms";
 
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+const apiClient = new APIClient<Game>('/games')
 
-export interface Games {
+export interface Game {
   id: number;
   name: string;
   background_image: string;
@@ -21,15 +16,22 @@ export interface Games {
 }
 
 const useGames = (gameQuery: GameQuery) =>
-  useData<Games>('/games',
-    {
+  useInfiniteQuery<FetchResponse<Game>, Error>({
+    queryKey: ['games', gameQuery],
+    initialPageParam: 1,
+    queryFn: ({pageParam = 1}) => apiClient.getAll({
       params: {
-        genres: gameQuery.genre?.id,
-        platforms: gameQuery.platform?.id,
+        genres: gameQuery.genreId,
+        parent_platforms: gameQuery.platformId,
         ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText
-      }
-    },
-    [gameQuery]
-  );
+        search: gameQuery.searchText,
+        page: pageParam
+      },
+    }),
+    staleTime: ms('24h'),
+    getNextPageParam: (lastPage, allPages) => {
+    return lastPage.next ? allPages.length + 1 : undefined;
+    }
+  })
+
 export default useGames;

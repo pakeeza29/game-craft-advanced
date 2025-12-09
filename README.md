@@ -96,8 +96,8 @@ src/
 ## 📦 Installation
 
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/pakeeza29/game-craft-advanced.git
+cd game-craft-advanced
 npm install
 npm run dev
 ```

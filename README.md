@@ -6,7 +6,7 @@ A modern, feature-rich gaming discovery platform built with React, React Query, 
 
 **Vercel Deployment:** _https://game-craft-advanced.vercel.app/_  
 **GitHub Repository:** _https://github.com/pakeeza29/game-craft-advanced_  
-**Project Video:** https://github.com/user-attachments/assets/e9e58d77-5b06-48fa-b880-a993d3611110
+**Demo:** [Watch the demo](https://github.com/user-attachments/assets/e9e58d77-5b06-48fa-b880-a993d3611110)
 
 ## ✨ Features
 

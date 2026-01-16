@@ -1,4 +1,4 @@
-# 🎮 GameHub React App
+# 🎮 GameCraft React App
 
 A modern, feature-rich gaming discovery platform built with React, React Query, Zustand, and the RAWG Games API. Deployed on **Vercel**, fully open-source on **GitHub**, and engineered with performance, scalability, and clean architecture in mind.
 
